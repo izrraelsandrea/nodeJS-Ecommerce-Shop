@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %>
+
+</head>
+
+<%- include('../includes/navigation.ejs') %>
+<body>
+    <main>
+        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>product-save<% } %>" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="<% if (editing) { %><%=product.title%><% } %>">
+
+            </div>
+            <div class="form-control">
+                <label for="imageURL">Image</label>
+                <input type="text" name="imageURL" id="imageURL" value="<% if (editing) { %><%=product.imageURL%><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" step="0.01" value="<% if (editing) { %><%=product.price%><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" rows="5"><% if (editing) { %> <%=product.description%> <% } %></textarea>
+            </div>
+            <button class="btn" type="submit"><% if (editing) { %> Update Product <% } else { %> Add product <% } %></button>
+            <% if (editing) {%>
+                <input type="hidden" id="productId" name="productId" value="<%= product.id %>">
+                <a href="/admin/delete-product?id=<%= product.id %>" class="btn">Delete</a>
+            <% } %>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
