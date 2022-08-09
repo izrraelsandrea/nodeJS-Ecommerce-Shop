@@ -6,9 +6,12 @@ exports.postAddProduct = (req, res, next) => {
     const price=req.body.price;
     const description=req.body.description;
     const product = new Product(null,title, imageURL, price, description);
-    product.save();
-    res.redirect('/');
+    product
+    .save()
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err));
 }
+
 exports.postEditProduct = (req, res, next) => {
     const prodId = req.body.productId;
     const UpdatedTitle=req.body.title;
@@ -38,15 +41,19 @@ res.redirect('/admin/products');
 
 
 exports.getProductsAdmin = (req, res) => {
-    Product.fetchAll(products =>{
-        res.render('admin/products', {
-        prods: products, 
-        pageTitle: 'Admin Product List', 
-        path: '/admin/products/', 
-        hasProducts: products.length > 0,
-        activeShop:true
-        });
+    Product.fetchAll()
+    .then(([row,fieldData]) =>{
+    res.render('admin/products', {
+    prods: row, 
+    pageTitle: 'Admin Product List', 
+    path: '/admin/products/', 
+    hasProducts: row.length > 0,
+    activeShop:true
     });
+    })
+    .catch(err =>console.log(err));
+        
+   
 }
 exports.getEditProduct = (req,res,next) => {
     const editMode = req.query.edit;

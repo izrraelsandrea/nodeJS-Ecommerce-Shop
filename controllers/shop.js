@@ -12,28 +12,32 @@ exports.addtoCart = (req, res, next) => {
     }
 
 exports.getProducts = (req, res) => {
-    Product.fetchAll(products =>{
+    Product.fetchAll()
+    .then(([rows, fieldData]) =>{
         res.render('shop/product-list', {
-        prods: products, 
+        prods: rows, 
         pageTitle: 'Shop', 
         path: '/products-list/', 
-        hasProducts: products.length > 0,
+        hasProducts: rows.length > 0,
         activeShop:true
         });
-    });
+    })
+    .catch(err =>console.log(err));
 }
 exports.getProduct = (req, res, next) => {
     const prodId= req.params.productId;
-    Product.findById(prodId, product => { 
+    Product.findById(prodId)
+    .then(([product]) => { 
         res.render('shop/product-details', {
-        product: product,
+        product: product[0],
         pageTitle: 'Product details',
         path: '/products-list/',
         hasProducts: product.length > 0,
         activeShop: true,
-
         });
-    });
+    })
+    .catch(err =>console.log(err));
+
 }
 exports.getHomePage = (req, res, next) => {
     res.render('shop/index', {
