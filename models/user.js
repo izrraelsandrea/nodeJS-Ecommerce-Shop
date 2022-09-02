@@ -65,8 +65,7 @@ class User {
                         return i.productId.toString() === p._id.toString();
                     }).quantity
                 }
-            })
-        })
+            })        })
         .catch(err => console.log(err));
     }
     deleteCartItem(productId)
