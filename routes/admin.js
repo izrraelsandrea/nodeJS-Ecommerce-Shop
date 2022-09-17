@@ -7,16 +7,16 @@ const router = express.Router();
 
 router.use(bodyParser.urlencoded({extended: true}));
 
-router.get('/edit-product/:productID',adminController.getEditProduct);
+ router.get('/edit-product/:productID',adminController.getEditProduct);
 
-router.post('/product-save', adminController.postAddProduct);
+ router.post('/product-save', adminController.postAddProduct);
 
- router.get('/products' , adminController.getProductsAdmin);
+  router.get('/products' , adminController.getProductsAdmin);
 
- router.get('/add-product',adminController.getAddProduct);
+  router.get('/add-product',adminController.getAddProduct);
 
- router.post('/edit-product', adminController.postEditProduct);
+  router.post('/edit-product', adminController.postEditProduct);
 
- router.post('/delete-product',adminController.postDeleteProduct);
+  router.post('/delete-product',adminController.postDeleteProduct);
 
 module.exports = router;

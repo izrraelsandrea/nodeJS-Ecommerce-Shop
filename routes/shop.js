@@ -7,20 +7,20 @@ const router = express.Router();
 
 router.use(bodyParser.urlencoded({extended: true}));
 
- router.get('/cart', shopController.getCart);
+  router.get('/cart', shopController.getCart);
 
- router.post('/cart', shopController.addtoCart);
+  router.post('/cart', shopController.addtoCart);
 
- router.post('/delete-cart-product', shopController.postDeleteCartProduct);
+  router.post('/delete-cart-product', shopController.postDeleteCartProduct);
 
- router.post('/create-order', shopController.postOrder);
+  router.post('/create-order', shopController.postOrder);
 
-router.get('/products-list', shopController.getProducts);
+ router.get('/products-list', shopController.getProducts);
 
-router.get('/product-details/:productId', shopController.getProduct);
+ router.get('/product-details/:productId', shopController.getProduct);
     
-router.get('/orders', shopController.getOrders);
+ router.get('/orders', shopController.getOrders);
 
-router.get('/', shopController.getHomePage);
-//update
+ router.get('/', shopController.getHomePage);
+// //update
 module.exports= router;
