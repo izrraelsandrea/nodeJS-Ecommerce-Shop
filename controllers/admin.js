@@ -54,7 +54,8 @@ exports.getAddProduct = (req,res,next) => {
     pageTitle: 'Add Products Form', 
     path:'/admin/add-product/',
     activeAdp: true,
-    editing: false
+    editing: false,
+    isAuthenticated: req.session.isLoggedIn
 });
 }
 exports.postDeleteProduct = (req,res,next) => {
@@ -79,7 +80,8 @@ exports.getProductsAdmin = (req, res) => {
         pageTitle: 'Shop', 
         path: '/admin/products/', 
         hasProducts: products.length > 0,
-        activeShop:true
+        activeShop:true,
+        isAuthenticated: req.session.isLoggedIn
         });
     })
     .catch(err =>console.log(err));     
@@ -101,7 +103,8 @@ exports.getEditProduct = (req,res,next) => {
           pageTitle: 'Edit Products Form', 
           path:'/admin/edit-product/',
           editing: editMode,
-          product: products
+          product: products,
+          isAuthenticated: req.session.isLoggedIn
         })
     })
     .catch(err =>console.log(err));

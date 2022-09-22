@@ -15,7 +15,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 
   router.post('/create-order', shopController.postOrder);
 
- router.get('/products-list', shopController.getProducts);
+ router.get('/products', shopController.getProducts);
 
  router.get('/product-details/:productId', shopController.getProduct);
     
